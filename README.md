@@ -55,12 +55,6 @@ It is lightweight, responsive, and dark-themed for a modern UI.
 
 ## 📸 Preview
 
-| Doughnut Chart                                                             | Polar Area Chart                                                               |
-| :------------------------------------------------------------------------- | :----------------------------------------------------------------------------- |
-| ![Doughnut Chart](https://via.placeholder.com/300x300?text=Doughnut+Chart) | ![Polar Area Chart](https://via.placeholder.com/300x300?text=Polar+Area+Chart) |
-
-_(Replace with real screenshots if needed)_
-
 ---
 
 ## 🧠 Future Improvements
@@ -87,7 +81,3 @@ open index.html
 ```
 
 Or simply drag `index.html` into your browser!
-
----
-
-# ✅ Done!
