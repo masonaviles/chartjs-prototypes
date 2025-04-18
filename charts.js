@@ -19,15 +19,15 @@ backgroundGradient3.addColorStop(1, '#ef4444');
 
 // Border Gradients (mostly white but with color hint)
 const borderGradient1 = doughnutCtx.createLinearGradient(0, 0, 400, 400);
-borderGradient1.addColorStop(0, 'rgba(255, 255, 255, 0.9)'); // Bright white
+borderGradient1.addColorStop(0, 'rgba(255, 255, 255, 0.7)'); // Bright white
 borderGradient1.addColorStop(1, 'rgba(59, 130, 246, 0.6)'); // Light blue
 
 const borderGradient2 = doughnutCtx.createLinearGradient(0, 0, 400, 400);
-borderGradient2.addColorStop(0, 'rgba(255, 255, 255, 0.9)'); // Bright white
+borderGradient2.addColorStop(0, 'hsla(0, 0.00%, 100.00%, 0.7)'); // Bright white
 borderGradient2.addColorStop(1, 'rgba(236, 72, 153, 0.6)'); // Light pink
 
 const borderGradient3 = doughnutCtx.createLinearGradient(0, 0, 400, 400);
-borderGradient3.addColorStop(0, 'rgba(255, 255, 255, 0.9)'); // Bright white
+borderGradient3.addColorStop(0, 'rgba(255, 255, 255, 0.7)'); // Bright white
 borderGradient3.addColorStop(1, 'rgba(239, 68, 68, 0.6)'); // Light red
 
 // Shared data
@@ -53,6 +53,7 @@ new Chart(doughnutCtx, {
         cutout: '50%',
         responsive: true,
         maintainAspectRatio: false,
+        resizeDelay: 0,
         layout: {
             padding: 10
         },
@@ -112,6 +113,7 @@ new Chart(polarCtx, {
     options: {
         responsive: true,
         maintainAspectRatio: false,
+        resizeDelay: 0,
         animation: {
             animateRotate: true,
             animateScale: true,
@@ -220,9 +222,10 @@ new Chart(barCtx, {
     }]
   },
   options: {
-    indexAxis: 'y', // Make it horizontal
+    indexAxis: 'y',
     responsive: true,
     maintainAspectRatio: false,
+    resizeDelay: 0,
     layout: {
       padding: 1
     },
@@ -251,6 +254,15 @@ new Chart(barCtx, {
           color: '#334155'
         }
       }
+    },
+    animations: {
+        x: {
+          type: 'number',
+          easing: 'grow',
+          duration: 1000,
+          from: 0,
+          delay: (context) => context.dataIndex * 150
+        }
     },
     plugins: {
       legend: {
