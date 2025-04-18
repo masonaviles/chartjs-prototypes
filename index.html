@@ -1,60 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sales Chart with Tailwind & Chart.js</title>
-  <!-- TailwindCSS CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="style.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sales Chart with Tailwind & Chart.js</title>
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body class="flex flex-col items-center justify-start min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 p-8">
+  <body
+    class="flex flex-col items-center justify-start min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 p-8"
+  >
+    <div id="background" class="fixed inset-0 -z-10"></div>
 
-  <div id="background" class="fixed inset-0 -z-10"></div>
+    <!-- Outer Wrapper -->
+    <div class="w-full max-w-7xl px-4 sm:px-8 py-8 space-y-8 z-10">
+      <!-- Top Row -->
+      <div class="flex flex-col md:flex-row gap-8">
+        <!-- Doughnut Chart -->
+        <div
+          class="flex-1 bg-white/5 backdrop-blur-md rounded-2xl shadow-lg p-6 h-[40vh]"
+        >
+          <canvas id="doughnutChart" class="w-full h-full"></canvas>
+        </div>
 
-  <!-- Outer Wrapper -->
-  <div class="w-full max-w-7xl px-4 sm:px-8 py-8 space-y-8 z-10">
-
-    <!-- Top Row (responsive) -->
-    <div class="flex flex-col md:flex-row gap-8">
-      <!-- Doughnut Chart -->
-      <div class="flex-1 bg-white/5 backdrop-blur-md rounded-2xl shadow-lg p-6 h-[40vh]">
-        <canvas id="doughnutChart" class="w-full h-full"></canvas>
+        <!-- Polar Area Chart -->
+        <div
+          class="flex-1 bg-white/5 backdrop-blur-md rounded-2xl shadow-lg p-6 h-[40vh]"
+        >
+          <canvas id="polarAreaChart" class="w-full h-full"></canvas>
+        </div>
       </div>
 
-      <!-- Polar Area Chart -->
-      <div class="flex-1 bg-white/5 backdrop-blur-md rounded-2xl shadow-lg p-6 h-[40vh]">
-        <canvas id="polarAreaChart" class="w-full h-full"></canvas>
+      <!-- Second Row (Bar Chart) -->
+      <div>
+        <div
+          class="bg-white/5 backdrop-blur-md rounded-2xl shadow-lg p-6 h-[50vh]"
+        >
+          <canvas id="barChart" class="w-full h-full"></canvas>
+        </div>
       </div>
     </div>
 
-    <!-- Second Row (bar chart) -->
-    <div>
-      <div class="bg-white/5 backdrop-blur-md rounded-2xl shadow-lg p-6 h-[50vh]">
-        <canvas id="barChart" class="w-full h-full"></canvas>
-      </div>
-    </div>
+    <script src="charts.js"></script>
+    <script src="background.js"></script>
 
-  </div>
-
-  <script src="charts.js"></script>
-  <script src="background.js"></script>
-
-  <script>
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        location.reload();
-      }, 300);
-    });
-  </script>
-
-
-</body>
-
-
+    <script>
+      let resizeTimeout;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          location.reload();
+        }, 300);
+      });
+    </script>
+  </body>
 </html>

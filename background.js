@@ -1,4 +1,4 @@
-const bgDiv = document.getElementById('background');
+const bgDiv = document.getElementById("background");
 
 let targetX = 50;
 let targetY = 50;
@@ -7,7 +7,7 @@ let currentY = 50;
 
 const easing = 0.02;
 
-document.addEventListener('mousemove', (e) => {
+document.addEventListener("mousemove", (e) => {
   const rect = bgDiv.getBoundingClientRect();
   const mouseX = ((e.clientX - rect.left) / rect.width) * 100;
   const mouseY = ((e.clientY - rect.top) / rect.height) * 100;
