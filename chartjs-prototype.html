@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sales Chart with Tailwind & Chart.js</title>
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="flex flex-col items-center justify-start min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 p-8">
+
+  <div class="flex flex-row gap-8 mt-8">
+    <!-- Chart 1 -->
+    <div class="bg-white/5 backdrop-blur-md rounded-2xl shadow-lg p-6 max-w-md w-full">
+      <canvas id="doughnutChart" width="400" height="400"></canvas>
+    </div>
+
+    <!-- Chart 2 -->
+    <div class="bg-white/5 backdrop-blur-md rounded-2xl shadow-lg p-6 max-w-md w-full">
+      <canvas id="polarAreaChart" width="400" height="400"></canvas>
+    </div>
+  </div>
+
+  <script src="charts.js"></script>
+
+</body>
+</html>
