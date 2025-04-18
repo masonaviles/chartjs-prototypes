@@ -17,17 +17,18 @@ const backgroundGradient3 = doughnutCtx.createLinearGradient(0, 0, 0, 400);
 backgroundGradient3.addColorStop(0, '#f59e0b');
 backgroundGradient3.addColorStop(1, '#ef4444');
 
+// Border Gradients (mostly white but with color hint)
 const borderGradient1 = doughnutCtx.createLinearGradient(0, 0, 400, 400);
-borderGradient1.addColorStop(0, '#0ea5e9');
-borderGradient1.addColorStop(1, '#3b82f6');
+borderGradient1.addColorStop(0, 'rgba(255, 255, 255, 0.9)'); // Bright white
+borderGradient1.addColorStop(1, 'rgba(59, 130, 246, 0.6)'); // Light blue
 
 const borderGradient2 = doughnutCtx.createLinearGradient(0, 0, 400, 400);
-borderGradient2.addColorStop(0, '#a855f7');
-borderGradient2.addColorStop(1, '#ec4899');
+borderGradient2.addColorStop(0, 'rgba(255, 255, 255, 0.9)'); // Bright white
+borderGradient2.addColorStop(1, 'rgba(236, 72, 153, 0.6)'); // Light pink
 
 const borderGradient3 = doughnutCtx.createLinearGradient(0, 0, 400, 400);
-borderGradient3.addColorStop(0, '#f59e0b');
-borderGradient3.addColorStop(1, '#ef4444');
+borderGradient3.addColorStop(0, 'rgba(255, 255, 255, 0.9)'); // Bright white
+borderGradient3.addColorStop(1, 'rgba(239, 68, 68, 0.6)'); // Light red
 
 // Shared data
 const labels = ['Tickets', 'Memberships', 'Subscriptions'];
@@ -39,42 +40,55 @@ const borderGradients = [borderGradient1, borderGradient2, borderGradient3];
 new Chart(doughnutCtx, {
     type: 'doughnut',
     data: {
-    labels: labels,
-    datasets: [{
-        data: dataValues,
-        backgroundColor: backgroundGradients,
-        borderColor: borderGradients,
-        borderWidth: 2,
-        hoverOffset: 20
-    }]
+        labels: labels,
+        datasets: [{
+            data: dataValues,
+            backgroundColor: backgroundGradients,
+            borderColor: borderGradients,
+            borderWidth: 2,
+            hoverOffset: 20
+        }]
     },
     options: {
-    cutout: '70%',
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-        legend: {
-        position: 'bottom',
-        labels: {
-            color: '#cbd5e1',
-            font: {
-            size: 14,
-            weight: '500'
-            },
-            usePointStyle: true,
-            pointStyle: 'rectRounded',
-            padding: 20
-        }
+        cutout: '50%',
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: {
+            padding: 10
         },
-        tooltip: {
-        backgroundColor: '#1e293b',
-        titleColor: '#38bdf8',
-        bodyColor: '#cbd5e1',
-        borderColor: '#334155',
-        borderWidth: 1
+        plugins: {
+            legend: {
+                position: 'top',
+                padding: 60,
+                labels: {
+                    color: '#cbd5e1',
+                    font: {
+                        size: 14,
+                        weight: '500'
+                    },
+                    usePointStyle: true,
+                    pointStyle: 'round',
+                },
+            },
+            tooltip: {
+                backgroundColor: '#1e293b',
+                titleColor: '#38bdf8',
+                bodyColor: '#cbd5e1',
+                borderColor: '#334155',
+                borderWidth: 1
+            }
         }
-    }
-    }
+    },
+    plugins: [{
+        id: 'adjustLegendMargin',
+        beforeInit(chart) {
+          const originalFit = chart.legend.fit;
+          chart.legend.fit = function fit() {
+            originalFit.bind(chart.legend)();
+            this.height += 20;
+          }
+        }
+    }]
 });
 
 // Polar Area Chart
@@ -96,68 +110,78 @@ new Chart(polarCtx, {
     }]
     },
     options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    animation: {
-        animateRotate: true,
-        animateScale: true,
-        duration: 1500,
-        easing: 'easeOutQuart'
-    },
-    interaction: {
-        mode: 'nearest',
-        intersect: true
-    },
-    animations: {
-        radius: {
-        duration: 600,
-        easing: 'easeOutElastic',
-        loop: false
-        }
-    },
-    scales: {
-        r: {
-        grid: {
-            color: '#334155'
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+            animateRotate: true,
+            animateScale: true,
+            duration: 1500,
+            easing: 'easeOutQuart'
         },
-        angleLines: {
-            color: '#334155'
+        interaction: {
+            mode: 'nearest',
+            intersect: true
         },
-        pointLabels: {
-            display: false,
-            centerPointLabels: true,
-            font: {
-            size: 16,
-            weight: '600'
+        animations: {
+            radius: {
+            duration: 600,
+            easing: 'easeOutElastic',
+            loop: false
+            }
+        },
+        scales: {
+            r: {
+            grid: {
+                color: '#334155'
             },
-            color: '#cbd5e1'
+            angleLines: {
+                color: '#334155'
+            },
+            pointLabels: {
+                display: false,
+                centerPointLabels: true,
+                font: {
+                size: 16,
+                weight: '600'
+                },
+                color: '#cbd5e1'
+            },
+            ticks: {
+                display: false
+            }
+            }
         },
-        ticks: {
-            display: false
-        }
+        plugins: {
+            legend: {
+            position: 'bottom',
+            labels: {
+                color: '#cbd5e1',
+                font: {
+                size: 14,
+                weight: '500'
+                },
+                usePointStyle: true,
+                pointStyle: 'circle',
+                padding: 20
+            }
+            },
+            tooltip: {
+            backgroundColor: '#1e293b',
+            titleColor: '#38bdf8',
+            bodyColor: '#cbd5e1',
+            borderColor: '#334155',
+            borderWidth: 1
+            }
         }
     },
-    plugins: {
-        legend: {
-        position: 'bottom',
-        labels: {
-            color: '#cbd5e1',
-            font: {
-            size: 14,
-            weight: '500'
-            },
-            usePointStyle: true,
-            pointStyle: 'circle',
-            padding: 20
+    plugins: [{
+        id: 'adjustLegendMargin',
+        beforeInit(chart) {
+          const originalFit = chart.legend.fit;
+          chart.legend.fit = function fit() {
+            originalFit.bind(chart.legend)();
+            this.height += 20;
+          }
         }
-        },
-        tooltip: {
-        backgroundColor: '#1e293b',
-        titleColor: '#38bdf8',
-        bodyColor: '#cbd5e1',
-        borderColor: '#334155',
-        borderWidth: 1
-        }
-    }
-    }
+    }]
 });
