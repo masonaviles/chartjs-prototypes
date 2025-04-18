@@ -1,34 +1,49 @@
+// ======= COLOR VARIABLES =======
+
+// Bar & Word Cloud Colors
+const barChartColors = [
+  "rgba(59, 130, 246, 0.8)", // Blue
+  "rgba(139, 92, 246, 0.8)", // Purple
+  "rgba(236, 72, 153, 0.8)", // Pink
+  "rgba(6, 182, 212, 0.8)", // Cyan
+  "rgba(245, 158, 11, 0.8)", // Amber
+  "rgba(239, 68, 68, 0.8)", // Red
+  "rgba(34, 197, 94, 0.8)", // Green
+  "rgba(244, 63, 94, 0.8)", // Rose
+  "rgba(147, 197, 253, 0.8)", // Light Blue
+];
+
 const doughnutCanvas = document.getElementById("doughnutChart");
 const polarCanvas = document.getElementById("polarAreaChart");
 
 const doughnutCtx = doughnutCanvas.getContext("2d");
 const polarCtx = polarCanvas.getContext("2d");
 
-// Gradients
-const backgroundGradient1 = doughnutCtx.createLinearGradient(0, 0, 0, 400);
+// ======= GRADIENT DEFINITIONS =======
+backgroundGradient1 = doughnutCtx.createLinearGradient(0, 0, 0, 400);
 backgroundGradient1.addColorStop(0, "#06b6d4");
 backgroundGradient1.addColorStop(1, "#3b82f6");
 
-const backgroundGradient2 = doughnutCtx.createLinearGradient(0, 0, 0, 400);
+backgroundGradient2 = doughnutCtx.createLinearGradient(0, 0, 0, 400);
 backgroundGradient2.addColorStop(0, "#8b5cf6");
 backgroundGradient2.addColorStop(1, "#ec4899");
 
-const backgroundGradient3 = doughnutCtx.createLinearGradient(0, 0, 0, 400);
+backgroundGradient3 = doughnutCtx.createLinearGradient(0, 0, 0, 400);
 backgroundGradient3.addColorStop(0, "#f59e0b");
 backgroundGradient3.addColorStop(1, "#ef4444");
 
-// Border Gradients (mostly white but with color hint)
-const borderGradient1 = doughnutCtx.createLinearGradient(0, 0, 400, 400);
-borderGradient1.addColorStop(0, "rgba(255, 255, 255, 0.7)"); // Bright white
-borderGradient1.addColorStop(1, "rgba(59, 130, 246, 0.6)"); // Light blue
+// Border gradients (white + color hint)
+borderGradient1 = doughnutCtx.createLinearGradient(0, 0, 400, 400);
+borderGradient1.addColorStop(0, "rgba(255, 255, 255, 0.7)");
+borderGradient1.addColorStop(1, "rgba(59, 130, 246, 0.6)");
 
-const borderGradient2 = doughnutCtx.createLinearGradient(0, 0, 400, 400);
-borderGradient2.addColorStop(0, "hsla(0, 0.00%, 100.00%, 0.7)"); // Bright white
-borderGradient2.addColorStop(1, "rgba(236, 72, 153, 0.6)"); // Light pink
+borderGradient2 = doughnutCtx.createLinearGradient(0, 0, 400, 400);
+borderGradient2.addColorStop(0, "rgba(255, 255, 255, 0.7)");
+borderGradient2.addColorStop(1, "rgba(236, 72, 153, 0.6)");
 
-const borderGradient3 = doughnutCtx.createLinearGradient(0, 0, 400, 400);
-borderGradient3.addColorStop(0, "rgba(255, 255, 255, 0.7)"); // Bright white
-borderGradient3.addColorStop(1, "rgba(239, 68, 68, 0.6)"); // Light red
+borderGradient3 = doughnutCtx.createLinearGradient(0, 0, 400, 400);
+borderGradient3.addColorStop(0, "rgba(255, 255, 255, 0.7)");
+borderGradient3.addColorStop(1, "rgba(239, 68, 68, 0.6)");
 
 // Shared data
 const labels = ["Tickets", "Memberships", "Subscriptions"];
@@ -222,17 +237,7 @@ new Chart(barCtx, {
       {
         label: "Visitor Discussion (%)",
         data: [33, 10, 8, 7, 5, 4, 3, 2, 1],
-        backgroundColor: [
-          "rgba(59, 130, 246, 0.8)", // Blue
-          "rgba(139, 92, 246, 0.8)", // Purple
-          "rgba(236, 72, 153, 0.8)", // Pink
-          "rgba(6, 182, 212, 0.8)", // Cyan
-          "rgba(245, 158, 11, 0.8)", // Amber
-          "rgba(239, 68, 68, 0.8)", // Red
-          "rgba(34, 197, 94, 0.8)", // Green
-          "rgba(244, 63, 94, 0.8)", // Rose
-          "rgba(147, 197, 253, 0.8)", // Light Blue
-        ],
+        backgroundColor: barChartColors,
         borderColor: "rgba(255, 255, 255, 0.8)",
         borderWidth: 1,
         borderRadius: 10,
@@ -297,4 +302,57 @@ new Chart(barCtx, {
       },
     },
   },
+});
+
+// Word Cloud
+function generateWordCloud() {
+  const wordCloudCanvas = document.getElementById("wordCloudCanvas");
+
+  // Set explicit width and height based on the parent
+  const parent = wordCloudCanvas.parentElement;
+  wordCloudCanvas.width = parent.offsetWidth;
+  wordCloudCanvas.height = parent.offsetHeight;
+
+  // Clear canvas before redrawing
+  const ctx = wordCloudCanvas.getContext("2d");
+  ctx.clearRect(0, 0, wordCloudCanvas.width, wordCloudCanvas.height);
+
+  WordCloud(wordCloudCanvas, {
+    list: [
+      ["State Park", 33],
+      ["Hiking Area", 10],
+      ["Historical Landmark", 8],
+      ["Public Beach", 7],
+      ["Campground", 5],
+      ["Fishing Area", 4],
+      ["Picnic Ground", 3],
+      ["Vista Point", 2],
+      ["National Forest", 1],
+    ],
+    gridSize: Math.round((8 * wordCloudCanvas.width) / 1024),
+    weightFactor: (size) => (wordCloudCanvas.width / 9) * (size / 20),
+    fontFamily: "Poppins, sans-serif",
+    color: function (word, weight, fontSize, distance, theta) {
+      return barChartColors[Math.floor(Math.random() * barChartColors.length)];
+    },
+    backgroundColor: "transparent",
+    rotateRatio: 0.5,
+    rotationSteps: 2,
+    shuffle: true,
+    drawOutOfBound: false,
+    origin: [wordCloudCanvas.width / 2, wordCloudCanvas.height / 2],
+    shrinkToFit: true,
+  });
+}
+
+// Generate when page loads
+window.addEventListener("load", generateWordCloud);
+
+// Re-generate when window resizes
+let resizeTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    generateWordCloud();
+  }, 300);
 });
