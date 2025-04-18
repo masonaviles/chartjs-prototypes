@@ -46,7 +46,7 @@ new Chart(doughnutCtx, {
             backgroundColor: backgroundGradients,
             borderColor: borderGradients,
             borderWidth: 2,
-            hoverOffset: 20
+            hoverOffset: 30
         }]
     },
     options: {
@@ -185,3 +185,4 @@ new Chart(polarCtx, {
         }
     }]
 });
+  
