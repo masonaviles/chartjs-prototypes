@@ -1,9 +1,6 @@
 # 📊 Sales Charts Dashboard
 
-This project showcases a simple **dashboard** built using **TailwindCSS** and **Chart.js**, featuring two charts:
-
-- A **Doughnut Chart** (with radial gradients and hover expansion)
-- A **Polar Area Chart** (with centered labels and custom hover effects)
+This project showcases a simple **dashboard** built using **TailwindCSS** and **Chart.js**.
 
 It is lightweight, responsive, and dark-themed for a modern UI.
 
