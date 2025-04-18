@@ -185,4 +185,84 @@ new Chart(polarCtx, {
         }
     }]
 });
-  
+
+// Bar Chart
+const barCanvas = document.getElementById('barChart');
+const barCtx = barCanvas.getContext('2d');
+
+new Chart(barCtx, {
+  type: 'bar',
+  data: {
+    labels: [
+      'State park', 'Hiking area', 'Historical landmark', 
+      'Public beach', 'Campground', 'Fishing area', 
+      'Picnic ground', 'Vista point', 'National forest'
+    ],
+    datasets: [{
+      label: 'Visitor Discussion (%)',
+      data: [33, 10, 8, 7, 5, 4, 3, 2, 1],
+      backgroundColor: [
+        'rgba(59, 130, 246, 0.8)',  // Blue
+        'rgba(139, 92, 246, 0.8)',  // Purple
+        'rgba(236, 72, 153, 0.8)',  // Pink
+        'rgba(6, 182, 212, 0.8)',   // Cyan
+        'rgba(245, 158, 11, 0.8)',  // Amber
+        'rgba(239, 68, 68, 0.8)',   // Red
+        'rgba(34, 197, 94, 0.8)',   // Green
+        'rgba(244, 63, 94, 0.8)',   // Rose
+        'rgba(147, 197, 253, 0.8)'  // Light Blue
+      ],
+      borderColor: 'rgba(255, 255, 255, 0.8)',
+      borderWidth: 1,
+      borderRadius: 10,
+      barThickness: 30,
+      hoverBackgroundColor: 'rgba(255, 255, 255, 0.8)'
+    }]
+  },
+  options: {
+    indexAxis: 'y', // Make it horizontal
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: {
+      padding: 1
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: '#cbd5e1',
+          font: {
+            size: 12,
+            weight: '500'
+          }
+        },
+        grid: {
+          color: '#334155'
+        }
+      },
+      y: {
+        ticks: {
+          color: '#cbd5e1',
+          font: {
+            size: 14,
+            weight: '600'
+          }
+        },
+        grid: {
+          color: '#334155'
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: false
+      },
+      tooltip: {
+        backgroundColor: '#1e293b',
+        titleColor: '#38bdf8',
+        bodyColor: '#cbd5e1',
+        borderColor: '#334155',
+        borderWidth: 1
+      }
+    }
+  }
+});

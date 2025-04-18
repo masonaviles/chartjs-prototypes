@@ -1,28 +1,22 @@
 const bgDiv = document.getElementById('background');
 
-// Target mouse position
 let targetX = 50;
 let targetY = 50;
-
-// Current (animated) spotlight position
 let currentX = 50;
 let currentY = 50;
 
-// How fast it eases (smaller = slower following)
 const easing = 0.02;
 
-// Listen for mouse movement
 document.addEventListener('mousemove', (e) => {
   const rect = bgDiv.getBoundingClientRect();
   const mouseX = ((e.clientX - rect.left) / rect.width) * 100;
   const mouseY = ((e.clientY - rect.top) / rect.height) * 100;
-  
+
   targetX = mouseX;
   targetY = mouseY;
 });
 
 function animateBackground() {
-  // Move slowly toward target
   currentX += (targetX - currentX) * easing;
   currentY += (targetY - currentY) * easing;
 
@@ -38,5 +32,4 @@ function animateBackground() {
   requestAnimationFrame(animateBackground);
 }
 
-// Start the animation
 animateBackground();
