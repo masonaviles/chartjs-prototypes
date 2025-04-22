@@ -28,14 +28,14 @@
       <div class="flex flex-col md:flex-row gap-8">
         <!-- Doughnut Chart -->
         <div
-          class="flex-1 bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 h-[40vh]"
+          class="flex-1 bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 h-[40vh] chart-container"
         >
           <canvas id="doughnutChart" class="w-full h-full"></canvas>
         </div>
 
         <!-- Polar Area Chart -->
         <div
-          class="flex-1 bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 h-[40vh]"
+          class="flex-1 bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 h-[40vh] chart-container"
         >
           <canvas id="polarAreaChart" class="w-full h-full"></canvas>
         </div>
@@ -45,7 +45,7 @@
       <div class="flex flex-col md:flex-row gap-8 mt-8">
         <!-- Word Cloud (40%) -->
         <div
-          class="flex-[2] bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 relative h-[50vh]"
+          class="flex-[2] bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 relative h-[50vh] chart-container"
         >
           <canvas
             id="wordCloudCanvas"
@@ -55,7 +55,7 @@
 
         <!-- Bar Chart (60%) -->
         <div
-          class="flex-[3] bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 h-[50vh]"
+          class="flex-[3] bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 h-[50vh] chart-container"
         >
           <canvas id="barChart" class="w-full h-full"></canvas>
         </div>
@@ -73,6 +73,13 @@
         resizeTimeout = setTimeout(() => {
           location.reload();
         }, 300);
+      });
+    </script>
+    <script>
+      document.querySelectorAll(".chart-container").forEach((container) => {
+        container.addEventListener("click", () => {
+          container.classList.toggle("active");
+        });
       });
     </script>
   </body>

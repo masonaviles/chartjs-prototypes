@@ -4,3 +4,22 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* Chart Container Glow Base */
+.chart-container {
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+  border-radius: 1rem; /* matches rounded-2xl */
+  border: 1px solid transparent;
+}
+
+/* Hover Glow */
+.chart-container:hover {
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5), 0 0 24px rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.6); /* Tailwind blue-500 */
+}
+
+/* Active (Clicked) Glow */
+.chart-container.active {
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.7), 0 0 36px rgba(139, 92, 246, 0.5);
+  border-color: rgba(139, 92, 246, 0.8); /* Tailwind purple-500 */
+}
