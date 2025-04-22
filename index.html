@@ -12,6 +12,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.1.1/wordcloud2.min.js"></script>
     <!-- Three.js -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/FontLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/geometries/TextGeometry.js"></script>
+
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <link rel="stylesheet" href="style.css" />
@@ -44,13 +47,20 @@
       <!-- Second Row (Bar Chart + Word Cloud) -->
       <div class="flex flex-col md:flex-row gap-8 mt-8">
         <!-- Word Cloud (40%) -->
-        <div
+        <!-- <div
           class="flex-[2] bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 relative h-[50vh] chart-container"
         >
           <canvas
             id="wordCloudCanvas"
             class="absolute inset-0 w-full h-full"
           ></canvas>
+        </div> -->
+        <!-- Word Cloud (40%) -->
+        <div
+          id="wordCloudContainer"
+          class="chart-container flex-[2] bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 relative h-[50vh] overflow-hidden"
+        >
+          <!-- three.js canvas will be injected inside here -->
         </div>
 
         <!-- Bar Chart (60%) -->
@@ -64,6 +74,7 @@
 
     <script src="charts.js"></script>
     <script src="threeScene.js"></script>
+    <script src="threeWordCloud.js"></script>
     <script src="background.js"></script>
 
     <script>
