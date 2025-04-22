@@ -10,6 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Wordcloud2.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.1.1/wordcloud2.min.js"></script>
+    <!-- Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -24,14 +28,14 @@
       <div class="flex flex-col md:flex-row gap-8">
         <!-- Doughnut Chart -->
         <div
-          class="flex-1 bg-white/5 backdrop-blur-md rounded-2xl shadow-lg p-6 h-[40vh]"
+          class="flex-1 bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 h-[40vh]"
         >
           <canvas id="doughnutChart" class="w-full h-full"></canvas>
         </div>
 
         <!-- Polar Area Chart -->
         <div
-          class="flex-1 bg-white/5 backdrop-blur-md rounded-2xl shadow-lg p-6 h-[40vh]"
+          class="flex-1 bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 h-[40vh]"
         >
           <canvas id="polarAreaChart" class="w-full h-full"></canvas>
         </div>
@@ -41,7 +45,7 @@
       <div class="flex flex-col md:flex-row gap-8 mt-8">
         <!-- Word Cloud (40%) -->
         <div
-          class="flex-[2] bg-white/5 backdrop-blur-md rounded-2xl shadow-lg p-6 relative h-[50vh]"
+          class="flex-[2] bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 relative h-[50vh]"
         >
           <canvas
             id="wordCloudCanvas"
@@ -51,7 +55,7 @@
 
         <!-- Bar Chart (60%) -->
         <div
-          class="flex-[3] bg-white/5 backdrop-blur-md rounded-2xl shadow-lg p-6 h-[50vh]"
+          class="flex-[3] bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 h-[50vh]"
         >
           <canvas id="barChart" class="w-full h-full"></canvas>
         </div>
@@ -59,6 +63,7 @@
     </div>
 
     <script src="charts.js"></script>
+    <script src="threeScene.js"></script>
     <script src="background.js"></script>
 
     <script>
