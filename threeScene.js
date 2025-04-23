@@ -43,7 +43,7 @@ for (let i = 0; i < totalSpheres; i++) {
     color: starColors[Math.floor(Math.random() * starColors.length)],
     blending: THREE.AdditiveBlending,
     transparent: true,
-    opacity: 0.8,
+    opacity: 0.5,
     depthWrite: false,
   });
 
@@ -72,8 +72,10 @@ const targetRotation = { x: 0, y: 0 };
 document.addEventListener("mousemove", (event) => {
   const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
   const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-  targetRotation.y = mouseX * 0.5;
-  targetRotation.x = mouseY * 0.5;
+  const mouseSensitivity = 0.09;
+
+  targetRotation.y = mouseX * mouseSensitivity;
+  targetRotation.x = mouseY * mouseSensitivity;
 });
 
 // Clock for floating
